@@ -1,7 +1,7 @@
 const Admin = require('../models').Admin;
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const db = require('../models/index');
+const db = require('../models');
 const Op = db.Sequelize.Op;
 const config = require('../config/secret_admin');
 module.exports = {
@@ -63,14 +63,14 @@ module.exports = {
                     }, config.secret, {
                         expiresIn: 86400 //24h expired
                     });
-    
+
                     res.status(200).send({
                         error: false,
                         message: 'Berhasil masuk akun admin',
                         user : admin,
                         accessToken: token,
                         errors: null
-                    });                    
+                    });
                 }
             }
         })

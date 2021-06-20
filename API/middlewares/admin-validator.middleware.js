@@ -1,6 +1,6 @@
 const Admin = require('../models').Admin;
 const jwt = require('jsonwebtoken');
-const db = require('../models/index');
+const db = require('../models');
 const Op = db.Sequelize.Op;
 const config = require('../config/secret_admin');
 
@@ -12,13 +12,13 @@ module.exports = {
             return res.status(400).send({
                 error: true,
                 message: 'Token tidak ditemukan',
-            });            
+            });
         } else {
             if (tokenHeader.split(' ')[0] !== 'Bearer') {
                 return res.status(400).send({
                     error: true,
                     message: 'Format token salah',
-                });               
+                });
             } else {
                 const token = tokenHeader.split(' ')[1];
                 jwt.verify(token, config.secret, (error, decoded) => {

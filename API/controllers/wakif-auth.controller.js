@@ -3,7 +3,7 @@ const Token = require('../models').Token;
 const OneSignal = require('../models').OneSignal;
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const db = require('../models/index');
+const db = require('../models');
 const Op = db.Sequelize.Op;
 const config = require('../config/secret_wakif');
 const emailService = require("../utils/email/sendEmail");
@@ -52,7 +52,7 @@ module.exports = {
             message: error.message,
         }));
     },
-    async login(req, res) {        
+    async login(req, res) {
         try {
             const data = req.body;
             const wakif = await Wakif.findOne({
@@ -60,12 +60,12 @@ module.exports = {
                     email: data.email
                 }
             });
-            
+
             if (!wakif) {
                 res.status(400).send({
                     error: true,
                     message: 'Akun wakif tidak ditemukan',
-                });                                
+                });
             } else {
                 if (!comparePassword(data.password, wakif.password)) {
                     res.status(401).send({
@@ -98,9 +98,9 @@ module.exports = {
             res.status(500).send({
                 error: true,
                 message: error.message,
-            });  
+            });
         }
-        
+
     },
     logout(req, res) {
         OneSignal.destroy({
@@ -109,7 +109,7 @@ module.exports = {
                     {wakif_id: req.data_wakif.id},
                     {player_id: req.body.player_id},
                 ],
-            }            
+            }
         })
         .then((_) => res.send({
             error: false,
@@ -155,7 +155,7 @@ module.exports = {
                 });
             } else {
                 if (data.foto != null) fs.unlinkSync(`public/images/${data.foto}`);
-                
+
                 data
                 .update({
                     foto: req.file.filename
@@ -232,18 +232,18 @@ module.exports = {
                 })
                 .then((token) => {
                     if (token) token.destroy();
-                    
+
                     const code = crypto.randomBytes(3).toString('hex');
                     const resetToken = parseInt(code.toString('hex'), 16).toString().substr(0, 6);
                     const hash = bcrypt.hashSync(resetToken, 8);
-                    
+
                     Token.create({
                         email : user.email,
                         token : hash,
                     })
                     .then((result) => {
                         const code = resetToken;
-                        
+
                         emailService.sendMail({
                             from : 'Badan Wakaf Indonesia',
                             to: user.email,
@@ -252,7 +252,7 @@ module.exports = {
                             html: `<p>Gunakan kode ini untuk mengatur ulang kata sandi akun Anda: <strong>${code}</strong>. Kode hanya berlaku 10 menit.</p>`,
                         });
 
-                        res.send({ 
+                        res.send({
                             error: false,
                             message: 'Silakan cek email anda',
                             data: result,
@@ -303,7 +303,7 @@ module.exports = {
                         error: false,
                         message: 'Verifikasi token berhasil',
                     });
-                }    
+                }
             }
         })
         .catch((error) => res.status(500).send({
@@ -344,7 +344,7 @@ module.exports = {
                                 text: `Kata sandi berhasil diatur ulang.`,
                                 html: `<p>Kata sandi berhasil diatur ulang.</p>`,
                             });
-                            
+
                             token
                             .destroy()
                             .then((result) => res.send({
