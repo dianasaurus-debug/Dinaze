@@ -1,0 +1,7 @@
+.idea/
+node_modules/
+config/config.json
+public/images/
+public/dokumen/akta/
+public/dokumen/sertifikat/
+package-lock.json

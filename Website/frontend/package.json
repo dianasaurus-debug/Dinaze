@@ -1,0 +1,78 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "deploy": "node scripts/gh-pages-deploy.js"
+  },
+  "dependencies": {
+    "@appbaseio/reactivesearch-vue": "^1.0.0-beta.3",
+    "@fortawesome/fontawesome-free": "^5.15.2",
+    "admin-lte": "^3.1.0",
+    "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
+    "bootstrap-vue": "^2.21.2",
+    "chokidar": "^3.5.1",
+    "core-js": "^3.6.5",
+    "cropperjs": "^1.5.11",
+    "file-saver": "^2.0.5",
+    "jquery": "^3.5.1",
+    "jsdom": "^16.4.0",
+    "location": "^0.0.1",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "navigator": "^1.0.1",
+    "popper.js": "^1.16.1",
+    "sweetalert2": "^10.15.5",
+    "underscore": "^1.12.1",
+    "v-money": "^0.8.1",
+    "viewerjs": "^1.10.0",
+    "vue": "^2.6.11",
+    "vue-advanced-cropper": "^1.6.0",
+    "vue-chartjs": "^3.5.1",
+    "vue-cropperjs": "^4.2.0",
+    "vue-good-table": "^2.21.6",
+    "vue-jquery": "^1.0.6",
+    "vue-money": "^0.4.1",
+    "vue-progressbar": "^0.7.5",
+    "vue-router": "^3.5.1",
+    "vue-truncate": "^1.0.0",
+    "vuelidate": "^0.7.6",
+    "vuex": "^3.6.2",
+    "vuex-persistedstate": "^4.0.0-beta.3",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-compat": "^3.9.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "sass": "^1.35.0",
+    "sass-loader": "^10.0.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential"
+    ],
+    "parserOptions": {},
+    "rules": {},
+    "globals": {
+      "window": true
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
