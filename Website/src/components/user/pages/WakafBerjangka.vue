@@ -27,16 +27,16 @@
                                        <span class="text-primary">More...</span>
                                      </a>
                                 </span>
-                                <span v-else-if="props.column.field == 'nominal'">
+              <span v-else-if="props.column.field == 'nominal'">
                                         {{props.row.nominal | filterMoney}}
                                 </span>
-                                <span v-else-if="props.column.field == 'status_pembayaran'">
+              <span v-else-if="props.column.field == 'status_pembayaran'">
                                      <span v-if="props.row.status_pembayaran=='success'" class="badge bg-green">Sukses</span>
                                       <span v-if="props.row.status_pembayaran=='failure'" class="badge bg-red">Gagal</span>
                                       <span v-if="props.row.status_pembayaran=='pending'" class="badge bg-secondary">Pending</span>
                                       <span v-if="props.row.status_pembayaran=='refund'" class="badge bg-info">Refund</span>
                                 </span>
-                                <span v-else-if="props.column.field == 'metode_pembayaran'">
+              <span v-else-if="props.column.field == 'metode_pembayaran'">
                                         <img src="@/assets/images/logo_bank_bca.png" height="20px" v-if="props.row.metode_pembayaran=='bca'">
                                         <img src="@/assets/images/logo-bni.png" height="20px" v-else-if="props.row.metode_pembayaran=='bni'">
                                         <img src="@/assets/images/logo-bri.png" height="20px" v-else-if="props.row.metode_pembayaran=='bri'">
@@ -44,11 +44,11 @@
                                         <img src="@/assets/images/indomaret.png" height="20px" v-else-if="props.row.metode_pembayaran=='indomaret'">
                                         <img src="@/assets/images/alfamart.png" height="20px" v-else-if="props.row.metode_pembayaran=='alfamart'">
                                 </span>
-                                <span v-else-if="props.column.field=='kode_pembayaran'">
+              <span v-else-if="props.column.field=='kode_pembayaran'">
                                   <img :src="props.row.kode_pembayaran" v-if="props.row.metode_pembayaran=='gopay'" height="100px">
                                   <h6 v-else>{{props.row.kode_pembayaran}}</h6>
                                 </span>
-                                <span v-else>
+              <span v-else>
                                   {{props.formattedRow[props.column.field]}}
                                 </span>
             </template>
@@ -125,11 +125,11 @@
                 <th scope="row">Program Wakaf</th>
                 <td>{{wakaf.program.judul}}</td>
               </tr>
-              <tr>
-                <th scope="row">Cetak</th>
+              <tr v-if="wakaf.nama_file_akta!=null&&wakaf.nama_file_sertifikat!=null">
+                <th scope="row">Download</th>
                 <td>
-                  <button type="button" class="btn btn-primary mr-2">Sertifikat Wakaf</button>
-                  <button type="button" class="btn btn-primary">Akta Ikrar Wakaf</button>
+                  <button @click="downloadDokumen(wakaf.nama_file_sertifikat, 'sertifikat')" type="button" class="btn btn-primary mr-2">Sertifikat Wakaf</button>
+                  <button @click="downloadDokumen( wakaf.nama_file_akta, 'akta')" type="button" class="btn btn-primary">Akta Ikrar Wakaf</button>
                 </td>
               </tr>
               </tbody>
@@ -190,6 +190,9 @@ export default {
     },
   },
   methods: {
+    downloadDokumen(filename, fileType) {
+      saveAs(`${URL}/dokumen/${fileType}/${filename}`, filename)
+    },
     moment: function (value) {
       return moment(value);
     },
