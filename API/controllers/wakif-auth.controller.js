@@ -409,7 +409,7 @@ module.exports = {
                 });
             } else {
                 // if user is not preset in our database save user data to database.
-                res.status(200).send({
+                res.status(400).send({
                     error: true,
                     message: 'Wakif harus memasukkan password terlebih dahulu',
                 });

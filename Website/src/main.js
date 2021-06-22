@@ -22,7 +22,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import money from 'v-money';
 import titleMixin from './utils/titleMixins'
 import VueRs from "@appbaseio/reactivesearch-vue";
-
+import firebase from "firebase";
 // register directive v-money and component <money>
 Vue.use(VueRs);
 Vue.use(Vuelidate);
@@ -65,6 +65,16 @@ Vue.filter('truncate', filter);
 Vue.filter("filterMoney", function (value) {
   return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(value);
 });
+const config = {
+  apiKey: "AIzaSyA3cOFLbZWLeIKQjRR2Yoe0X4IVTkyTp3Q",
+  authDomain: "wakafapp.firebaseapp.com",
+  projectId: "wakafapp",
+  storageBucket: "wakafapp.appspot.com",
+  messagingSenderId: "246266541125",
+  appId: "1:246266541125:web:1c9fabbfc8c5ad0808df2c",
+  measurementId: "G-ZNVYK7BLX9"
+}
+firebase.initializeApp(config);
 
 new Vue({
   router,

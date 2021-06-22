@@ -46,10 +46,18 @@
 
           <!-- Submit Button -->
           <div class="form-group col-lg-12 mx-auto mb-0">
-            <button class="btn btn-primary btn-block py-2" type="submit">
+            <button class="btn btn-primary btn-block py-2" type="button" @click="socialLogin">
               <span class="font-weight-bold">Login</span>
             </button>
           </div>
+
+          <!-- Submit Button -->
+          <div class="form-group col-lg-12 mx-auto mb-0">
+            <button class="btn btn-primary btn-block py-2 mt-2" type="button" @click="socialLogin">
+              <span class="font-weight-bold">Login/Register dengan Google</span>
+            </button>
+          </div>
+
 
           <!-- Already Registered -->
           <div class="text-center w-100">
@@ -66,12 +74,53 @@
       </form>
     </div>
   </div>
+    <div class="modal" tabindex="-1" id="registerModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Register</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form @submit.prevent="submitRegisterGmail">
+          <div class="modal-body">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" v-model="userData.email" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Nama</label>
+                <input type="text" class="form-control" v-model="userData.nama" id="exampleInputPassword1" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" v-model="userData.password" id="exampleInputPassword1" required>
+              </div>
+
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 import {required, email, minLength} from "vuelidate/lib/validators";
 import swal from 'sweetalert2'
-
+import firebase from "firebase";
+import axios from "axios";
+import $ from "jquery";
 export default {
   title: 'Login',
   name: "app",
@@ -84,6 +133,18 @@ export default {
       loading : false,
       message : '',
       submitted : false,
+      gmail : {
+        email : '',
+        nama : '',
+        password : ''
+      },
+      googleId : '',
+      userData : {
+        googleId : '',
+        nama :'',
+        email : '',
+        password : ''
+      }
     };
   },
   computed: {
@@ -103,6 +164,57 @@ export default {
     }
   },
   methods: {
+    socialLogin(){
+      let provider = new firebase.auth.GoogleAuthProvider();
+      firebase
+          .auth()
+          .signInWithPopup(provider)
+          .then((result) => {
+            let user = result.user;
+            this.userData.nama = user.displayName;
+            this.userData.email = user.email;
+            this.userData.googleId = user.uid;
+
+            this.$store.dispatch('auth/loginGmail', this.userData.googleId).then(
+                () => {
+                  this.loading = false;
+                  this.$router.push('/home');
+                },
+                error => {
+                  $('#registerModal').modal('show')
+                }
+            );
+          })
+          .catch((err) => {
+            swal.fire(
+                'Login Gagal!',
+                'Pastikan anda mengisikan data dengan benar',
+                'error'
+            )
+          });
+    },
+    submitRegisterGmail() {
+      this.$store.dispatch('auth/registerGmail', this.userData).then(
+          data => {
+            this.message = data.message;
+            this.successful = true;
+            $('#registerModal').modal('hide')
+            this.$router.push('/home');
+          },
+          error => {
+            swal.fire(
+                'Login Gagal!',
+                'Pastikan anda mengisikan data dengan benar',
+                'error'
+            )
+            this.message =
+                (error.response && error.response.data) ||
+                error.message ||
+                error.toString();
+            this.successful = false;
+          }
+      );
+    },
     handleLogin() {
       this.submitted = true;
       this.loading = true;
@@ -137,3 +249,14 @@ export default {
 
 };
 </script>
+<style>
+.google-signin-button {
+  color: white;
+  background-color: red;
+  height: 50px;
+  font-size: 16px;
+  border-radius: 10px;
+  padding: 10px 20px 25px 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+</style>
