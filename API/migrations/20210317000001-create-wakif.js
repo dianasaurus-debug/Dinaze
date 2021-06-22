@@ -1,5 +1,6 @@
 'use strict';
 module.exports = {
+
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('wakif', {
       id: {
@@ -7,6 +8,11 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
+      },
+      google_id : {
+        type : Sequelize.STRING,
+        allowNull : true,
+        unique : true
       },
       nik: {
         type: Sequelize.STRING(16),
@@ -37,7 +43,7 @@ module.exports = {
       },
       foto: {
         type: Sequelize.TEXT,
-        allowNull: true        
+        allowNull: true
       },
       created_at: {
         type: Sequelize.DATE,

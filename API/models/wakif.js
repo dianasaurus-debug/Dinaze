@@ -27,12 +27,18 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   };
+
   Wakif.init({
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
+    },
+    google_id : {
+      type : DataTypes.STRING,
+      allowNull : true,
+      unique : true
     },
     nik: {
       type: DataTypes.STRING(16),

@@ -3,6 +3,7 @@ const wakifValidator = require('../middlewares/wakif-validator.middleware');
 const validator = require('../middlewares/validator');
 const adminController = require('../controllers/admin.controller');
 const adminValidator = require('../middlewares/admin-validator.middleware');
+
 module.exports = (app) => {
     app.post('/api/wakif-auth/register', validator.validateUserRegistration, wakifAuthController.checkDuplicateEmail, wakifAuthController.register);
     app.post('/api/wakif-auth/login', wakifAuthController.login);
@@ -14,6 +15,7 @@ module.exports = (app) => {
     app.post('/api/wakif-auth/reset-password/request', wakifAuthController.requestResetPasswordToken);
     app.post('/api/wakif-auth/reset-password/verify', wakifAuthController.verifyResetPasswordToken);
     app.post('/api/wakif-auth/reset-password', wakifAuthController.resetPassword);
+    app.post('/api/wakif-auth/google', wakifAuthController.googleAuth);
     //END-POINT UNTUK ADMIN
     app.get('/api/admin/users/all', adminValidator.verifyToken, adminController.displayAllUser);
 
