@@ -15,7 +15,9 @@ module.exports = (app) => {
     app.post('/api/wakif-auth/reset-password/request', wakifAuthController.requestResetPasswordToken);
     app.post('/api/wakif-auth/reset-password/verify', wakifAuthController.verifyResetPasswordToken);
     app.post('/api/wakif-auth/reset-password', wakifAuthController.resetPassword);
-    app.post('/api/wakif-auth/google', wakifAuthController.googleAuth);
+    app.post('/api/wakif-auth/google/cek', wakifAuthController.googleAuthCheck);
+    app.post('/api/wakif-auth/google/register', wakifAuthController.googleAuthRegister);
+
     //END-POINT UNTUK ADMIN
     app.get('/api/admin/users/all', adminValidator.verifyToken, adminController.displayAllUser);
 
