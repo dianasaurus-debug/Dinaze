@@ -380,18 +380,17 @@ module.exports = {
     },
     async googleAuthCheck(req, res){
         try {
-            //find the user in our database
-            let wakif = await Wakif.findOne({
+            const wakif = await Wakif.findOne({
                 where: {
                     google_id: req.body.googleId
                 }
-            })
+            });
 
             if (wakif) {
                 const token = 'Bearer ' + jwt.sign({
                     id: wakif.id
                 }, config.secret, {
-                    expiresIn: 604800 //7 days expired
+                    expiresIn: 604800
                 });
 
                 if (req.body.player_id) {
@@ -408,15 +407,16 @@ module.exports = {
                     accessToken: token,
                 });
             } else {
-                // if user is not preset in our database save user data to database.
                 res.status(400).send({
                     error: true,
                     message: 'Wakif harus memasukkan password terlebih dahulu',
                 });
-
             }
-        } catch (err) {
-            console.error(err)
+        } catch (error) {
+            res.status(500).send({
+                error: true,
+                message: error.message,
+            });
         }
     },
     googleAuthRegister(req, res){
@@ -427,24 +427,31 @@ module.exports = {
             email: data.email,
             password: bcrypt.hashSync(data.password, 8)
         })
-            .then((wakif) =>{
-                const token = 'Bearer ' + jwt.sign({
-                    id: wakif.id
-                }, config.secret, {
-                    expiresIn: 604800 //7 days expired
-                });
-                res.status(201).send({
-                    error: false,
-                    data: wakif,
-                    accessToken : token,
-                    message: 'Berhasil registrasi akun wakif',
-                });
+        .then((wakif) =>{
+            const token = 'Bearer ' + jwt.sign({
+                id: wakif.id
+            }, config.secret, {
+                expiresIn: 604800
+            });
 
-            })
-            .catch((error) => res.status(500).send({
-                error: true,
-                message: error.message,
-            }));
+            if (data.player_id) {
+                OneSignal.create({
+                    wakif_id: wakif.id,
+                    player_id: req.body.player_id,
+                });
+            }
+
+            res.status(201).send({
+                error: false,
+                data: wakif,
+                accessToken : token,
+                message: 'Berhasil registrasi akun wakif',
+            });
+        })
+        .catch((error) => res.status(500).send({
+            error: true,
+            message: error.message,
+        }));
     }
 
 
