@@ -394,7 +394,7 @@ module.exports = {
                     expiresIn: 604800 //7 days expired
                 });
 
-                if (data.player_id) {
+                if (req.body.player_id) {
                     OneSignal.create({
                         wakif_id: wakif.id,
                         player_id: req.body.player_id,
