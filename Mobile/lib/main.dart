@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_cash_waqf/cubit/face_detection_cubit.dart';
 import 'package:flutter_cash_waqf/cubit/firebase_auth/firebase_auth_cubit.dart';
 import 'package:flutter_cash_waqf/cubit/ktp_ocr/ktp_ocr_cubit.dart';
 import 'package:flutter_cash_waqf/utilities/constant.dart';
@@ -101,6 +102,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(create: (_) => GetLaporanCubit()),
         BlocProvider(create: (_) => KtpOcrCubit()),
         BlocProvider(create: (_) => FirebaseAuthCubit()),
+        BlocProvider(create: (_) => FaceDetectionCubit()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
