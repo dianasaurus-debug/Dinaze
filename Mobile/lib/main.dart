@@ -34,11 +34,13 @@ import 'package:flutter_cash_waqf/cubit/waqf_program/waqf_program_cubit.dart';
 import 'package:flutter_cash_waqf/cubit/waqf_program_by_category/waqf_program_by_category_cubit.dart';
 import 'package:flutter_cash_waqf/cubit/waqf_type/waqf_type_cubit.dart';
 import 'package:flutter_cash_waqf/services/auth_service.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   OneSignal.shared.setAppId(oneSignalAppId);
+  await Firebase.initializeApp();
 
   runApp(MyApp());
 }
