@@ -133,11 +133,6 @@ export default {
       loading : false,
       message : '',
       submitted : false,
-      gmail : {
-        email : '',
-        nama : '',
-        password : ''
-      },
       googleId : '',
       userData : {
         googleId : '',
