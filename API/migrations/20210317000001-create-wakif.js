@@ -9,7 +9,7 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
       },
-      googleId : {
+      google_id : {
         type : Sequelize.STRING,
         allowNull : true,
         unique : true

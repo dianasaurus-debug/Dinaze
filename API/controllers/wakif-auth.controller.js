@@ -381,7 +381,11 @@ module.exports = {
     async googleAuth(req, res){
         try {
             //find the user in our database
-            let wakif = await Wakif.findOne({ where: { googleId: req.body.google_id } })
+            let wakif = await Wakif.findOne({
+                where: {
+                    google_id: req.body.googleId
+                }
+            })
 
             if (wakif) {
                 const token = 'Bearer ' + jwt.sign({
@@ -393,7 +397,7 @@ module.exports = {
                 if (data.player_id) {
                     OneSignal.create({
                         wakif_id: wakif.id,
-                        player_id: data.player_id,
+                        player_id: req.body.player_id,
                     });
                 }
 
@@ -406,10 +410,11 @@ module.exports = {
             } else {
                 // if user is not preset in our database save user data to database.
                 const newUser = {
-                    googleId: req.body.google_id,
-                    name: req.body.name,
+                    google_id: req.body.googleId,
+                    nama: req.body.name,
                     foto: req.body.foto,
-                    email: req.body.email
+                    email: req.body.email,
+                    password : req.body.password
                 }
                 wakif = await Wakif.create(newUser)
                     .then((wakif) => res.status(201).send({
