@@ -46,7 +46,7 @@
 
           <!-- Submit Button -->
           <div class="form-group col-lg-12 mx-auto mb-0">
-            <button class="btn btn-primary btn-block py-2" type="button" @click="socialLogin">
+            <button class="btn btn-primary btn-block py-2" type="submit">
               <span class="font-weight-bold">Login</span>
             </button>
           </div>
