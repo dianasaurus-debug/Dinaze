@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_cash_waqf/cubit/firebase_auth/firebase_auth_cubit.dart';
 import 'package:flutter_cash_waqf/cubit/ktp_ocr/ktp_ocr_cubit.dart';
 import 'package:flutter_cash_waqf/utilities/constant.dart';
 import 'package:flutter_cash_waqf/utilities/routes.dart';
@@ -99,6 +100,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(create: (_) => UploadImageCubit()),
         BlocProvider(create: (_) => GetLaporanCubit()),
         BlocProvider(create: (_) => KtpOcrCubit()),
+        BlocProvider(create: (_) => FirebaseAuthCubit()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
