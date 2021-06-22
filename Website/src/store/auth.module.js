@@ -25,14 +25,42 @@ export const auth = {
                 }
             );
         },
+        loginGmail({ commit }, user) {
+            return AuthService.loginGmail(user).then(
+                user => {
+                    AuthService.getProfile().then(
+                        userResult => {
+                            commit('getProfileSuccess', userResult);
+                            return Promise.resolve(userResult);
+                        }
+                    )
+                },
+                error => {
+                    commit('loginFailure');
+                    return Promise.reject(error);
+                }
+            );
+        },
         logout({ commit }) {
             AuthService.logout();
             commit('logout');
         },
         register({ commit }, user) {
             return AuthService.register(user).then(
+                userResult => {
+                    commit('getProfileSuccess', userResult);
+                    return Promise.resolve(userResult);
+                },
+                error => {
+                    commit('registerFailure');
+                    return Promise.reject(error);
+                }
+            );
+        },
+        registerGmail({ commit }, user) {
+            return AuthService.registerGmail(user).then(
                 response => {
-                    commit('registerSuccess');
+                    commit('registerSuccessGmail');
                     return Promise.resolve(response.data);
                 },
                 error => {
@@ -88,6 +116,9 @@ export const auth = {
         },
         registerSuccess(state) {
             state.status.loggedIn = false;
+        },
+        registerSuccessGmail(state) {
+            state.status.loggedIn = true;
         },
         registerFailure(state) {
             state.status.loggedIn = false;
