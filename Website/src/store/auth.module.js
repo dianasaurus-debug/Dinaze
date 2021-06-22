@@ -47,9 +47,9 @@ export const auth = {
         },
         register({ commit }, user) {
             return AuthService.register(user).then(
-                userResult => {
-                    commit('getProfileSuccess', userResult);
-                    return Promise.resolve(userResult);
+                response => {
+                    commit('registerSuccessGmail');
+                    return Promise.resolve(response.data);
                 },
                 error => {
                     commit('registerFailure');
@@ -59,9 +59,9 @@ export const auth = {
         },
         registerGmail({ commit }, user) {
             return AuthService.registerGmail(user).then(
-                response => {
-                    commit('registerSuccessGmail');
-                    return Promise.resolve(response.data);
+                userResult => {
+                    commit('getProfileSuccess', userResult);
+                    return Promise.resolve(userResult);
                 },
                 error => {
                     commit('registerFailure');
