@@ -425,7 +425,8 @@ module.exports = {
             google_id : data.googleId,
             nama: data.nama,
             email: data.email,
-            password: bcrypt.hashSync(data.password, 8)
+            password: bcrypt.hashSync(data.password, 8),
+            foto : data.foto
         })
             .then((wakif) =>{
                 const token = 'Bearer ' + jwt.sign({
