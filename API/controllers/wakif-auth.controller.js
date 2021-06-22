@@ -11,7 +11,6 @@ const crypto = require("crypto");
 const multer = require('multer');
 const fileUpload = require('../middlewares/upload-image.middleware');
 const fs = require('fs');
-
 function comparePassword(password, hashPassword) {
     return bcrypt.compareSync(password, hashPassword);
 }
@@ -378,6 +377,55 @@ module.exports = {
             error: true,
             message: error.message,
         }));
+    },
+    async googleAuth(req, res){
+        try {
+            //find the user in our database
+            let wakif = await Wakif.findOne({ where: { googleId: req.body.google_id } })
+
+            if (wakif) {
+                const token = 'Bearer ' + jwt.sign({
+                    id: wakif.id
+                }, config.secret, {
+                    expiresIn: 604800 //7 days expired
+                });
+
+                if (data.player_id) {
+                    OneSignal.create({
+                        wakif_id: wakif.id,
+                        player_id: data.player_id,
+                    });
+                }
+
+                res.status(200).send({
+                    error: false,
+                    message: 'Berhasil masuk akun wakif',
+                    data: wakif,
+                    accessToken: token,
+                });
+            } else {
+                // if user is not preset in our database save user data to database.
+                const newUser = {
+                    googleId: req.body.google_id,
+                    name: req.body.name,
+                    foto: req.body.foto,
+                    email: req.body.email
+                }
+                wakif = await Wakif.create(newUser)
+                    .then((wakif) => res.status(201).send({
+                        error: false,
+                        data: wakif,
+                        message: 'Berhasil registrasi akun wakif',
+                    }))
+                    .catch((error) => res.status(500).send({
+                        error: true,
+                        message: error.message,
+                    }));
+
+            }
+        } catch (err) {
+            console.error(err)
+        }
     }
 
 }
