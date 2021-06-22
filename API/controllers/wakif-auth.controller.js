@@ -409,7 +409,7 @@ module.exports = {
                 });
             } else {
                 // if user is not preset in our database save user data to database.
-                res.status(200).send({
+                res.status(400).send({
                     error: true,
                     message: 'Wakif harus memasukkan password terlebih dahulu',
                 });
@@ -425,8 +425,7 @@ module.exports = {
             google_id : data.googleId,
             nama: data.nama,
             email: data.email,
-            password: bcrypt.hashSync(data.password, 8),
-            foto : data.foto
+            password: bcrypt.hashSync(data.password, 8)
         })
             .then((wakif) =>{
                 const token = 'Bearer ' + jwt.sign({
