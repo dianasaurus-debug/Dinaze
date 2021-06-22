@@ -20,7 +20,7 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   RegisterCubit(this._authService) : super(RegisterInitialState());
 
-  Future<void> tryRegister(String name, String email, String password) async {
+  tryRegister(String name, String email, String password) async {
     emit(RegisterLoadingState());
     final _response = await _authService.register(name, email, password);
     if (_response is Exception) {

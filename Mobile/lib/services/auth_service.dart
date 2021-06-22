@@ -48,6 +48,40 @@ class AuthService extends BaseService {
     }
   }
 
+  firebaseCheck(String uid) async {
+    try {
+      final _response = await http.post(
+        Uri.parse("$_url/google/cek"),
+        body: {
+          "googleId": uid,
+          "player_id": await _getOneSignalId(),
+        },
+      );
+      return jsonDecode(_response.body);
+    } catch (e) {
+      return e;
+    }
+  }
+
+  Future<dynamic> firebaseRegister(
+      String name, String email, String password, String uid) async {
+    try {
+      final _response = await http.post(
+        Uri.parse("$_url/google/register"),
+        body: {
+          "googleId": uid,
+          "nama": name,
+          "email": email,
+          "password": password,
+          "player_id": await _getOneSignalId(),
+        },
+      );
+      return jsonDecode(_response.body);
+    } catch (e) {
+      return e;
+    }
+  }
+
   Future<dynamic> logout() async {
     try {
       final _response = await http.post(
