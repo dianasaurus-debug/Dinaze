@@ -8,6 +8,11 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
       },
+      googleId : {
+        type : Sequelize.STRING,
+        allowNull : true,
+        unique : true
+      },
       nik: {
         type: Sequelize.STRING(16),
         allowNull: true,
@@ -37,7 +42,7 @@ module.exports = {
       },
       foto: {
         type: Sequelize.TEXT,
-        allowNull: true        
+        allowNull: true
       },
       created_at: {
         type: Sequelize.DATE,

@@ -34,6 +34,11 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       allowNull: false,
     },
+    googleId : {
+      type : DataTypes.STRING,
+      allowNull : true,
+      unique : true
+    },
     nik: {
       type: DataTypes.STRING(16),
       allowNull: true,
