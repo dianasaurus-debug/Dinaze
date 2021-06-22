@@ -378,7 +378,7 @@ module.exports = {
             message: error.message,
         }));
     },
-    async googleAuth(req, res){
+    async googleAuthCheck(req, res){
         try {
             //find the user in our database
             let wakif = await Wakif.findOne({
@@ -409,29 +409,44 @@ module.exports = {
                 });
             } else {
                 // if user is not preset in our database save user data to database.
-                const newUser = {
-                    google_id: req.body.googleId,
-                    nama: req.body.name,
-                    foto: req.body.foto,
-                    email: req.body.email,
-                    password : req.body.password
-                }
-                wakif = await Wakif.create(newUser)
-                    .then((wakif) => res.status(201).send({
-                        error: false,
-                        data: wakif,
-                        message: 'Berhasil registrasi akun wakif',
-                    }))
-                    .catch((error) => res.status(500).send({
-                        error: true,
-                        message: error.message,
-                    }));
+                res.status(200).send({
+                    error: true,
+                    message: 'Wakif harus memasukkan password terlebih dahulu',
+                });
 
             }
         } catch (err) {
             console.error(err)
         }
+    },
+    googleAuthRegister(req, res){
+        const data = req.body;
+        Wakif.create({
+            google_id : data.googleId,
+            nama: data.nama,
+            email: data.email,
+            password: bcrypt.hashSync(data.password, 8)
+        })
+            .then((wakif) =>{
+                const token = 'Bearer ' + jwt.sign({
+                    id: wakif.id
+                }, config.secret, {
+                    expiresIn: 604800 //7 days expired
+                });
+                res.status(201).send({
+                    error: false,
+                    data: wakif,
+                    accessToken : token,
+                    message: 'Berhasil registrasi akun wakif',
+                });
+
+            })
+            .catch((error) => res.status(500).send({
+                error: true,
+                message: error.message,
+            }));
     }
+
 
 }
 
