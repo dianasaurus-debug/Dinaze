@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   };
+
   Wakif.init({
     id: {
       type: DataTypes.INTEGER,
