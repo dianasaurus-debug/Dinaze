@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-// const String baseUrl = "http://192.168.0.105:4000";
-const String baseUrl = "https://wakaf.praditya.web.id";
+const String baseUrl = "http://192.168.0.105:4000";
+// const String baseUrl = "https://wakaf.praditya.web.id";
 const String urlApi = "$baseUrl/api";
 const String imageUrlApi = "$baseUrl/images";
 const String aiwUrlApi = "$baseUrl/dokumen/akta";
