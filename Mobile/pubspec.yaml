@@ -27,6 +27,7 @@ dependencies:
   bloc_test: ^8.0.2
   cupertino_icons: ^1.0.3
   expandable_text: ^2.2.0
+  firebase_auth: ^1.4.1
   flutter_bloc: ^7.0.1
   flutter_easyrefresh: ^2.2.1
   flutter_secure_storage: ^4.2.0
@@ -34,12 +35,14 @@ dependencies:
   font_awesome_flutter: ^9.1.0
   get: ^4.1.4
   getwidget: ^2.0.2
+  google_sign_in: ^5.0.4
   http: ^0.13.3
   image_cropper: ^1.4.0
   image_downloader: ^0.30.0
   image_picker: ^0.7.5+4
   intl: ^0.17.0
   jwt_decoder: ^2.0.1
+  learning_face_detection: ^0.0.2
   learning_text_recognition: ^0.0.2
   mocktail: ^0.1.4
   modal_bottom_sheet: ^2.0.0

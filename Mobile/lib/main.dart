@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_cash_waqf/cubit/face_detection_cubit.dart';
+import 'package:flutter_cash_waqf/cubit/firebase_auth/firebase_auth_cubit.dart';
 import 'package:flutter_cash_waqf/cubit/ktp_ocr/ktp_ocr_cubit.dart';
 import 'package:flutter_cash_waqf/utilities/constant.dart';
 import 'package:flutter_cash_waqf/utilities/routes.dart';
@@ -34,11 +36,13 @@ import 'package:flutter_cash_waqf/cubit/waqf_program/waqf_program_cubit.dart';
 import 'package:flutter_cash_waqf/cubit/waqf_program_by_category/waqf_program_by_category_cubit.dart';
 import 'package:flutter_cash_waqf/cubit/waqf_type/waqf_type_cubit.dart';
 import 'package:flutter_cash_waqf/services/auth_service.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   OneSignal.shared.setAppId(oneSignalAppId);
+  await Firebase.initializeApp();
 
   runApp(MyApp());
 }
@@ -97,6 +101,8 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(create: (_) => UploadImageCubit()),
         BlocProvider(create: (_) => GetLaporanCubit()),
         BlocProvider(create: (_) => KtpOcrCubit()),
+        BlocProvider(create: (_) => FirebaseAuthCubit()),
+        BlocProvider(create: (_) => FaceDetectionCubit()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,

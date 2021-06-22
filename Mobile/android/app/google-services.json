@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "393676233624",
+    "project_id": "cash-waqf",
+    "storage_bucket": "cash-waqf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:393676233624:android:35ea4b986aac579e6de9ed",
+        "android_client_info": {
+          "package_name": "com.example.flutter_cash_waqf"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "393676233624-sfh59fhm0mre7p80g4mnrttcrvbjm4i8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_cash_waqf",
+            "certificate_hash": "04d00fa2c06008d5296750c3d44d8223ecece871"
+          }
+        },
+        {
+          "client_id": "393676233624-i6nh2ofp15bmut8cofgu9lujmnn6agh4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK7xWfnmWXAI3GEd7xyd6BYry9TBD0lpA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "393676233624-i6nh2ofp15bmut8cofgu9lujmnn6agh4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

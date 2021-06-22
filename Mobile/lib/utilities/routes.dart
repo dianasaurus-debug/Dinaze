@@ -1,4 +1,5 @@
 import 'package:flutter_cash_waqf/view/pages/auth/change_password_screen.dart';
+import 'package:flutter_cash_waqf/view/pages/auth/create_password_screen.dart';
 import 'package:flutter_cash_waqf/view/pages/auth/login_screen.dart';
 import 'package:flutter_cash_waqf/view/pages/auth/register_screen.dart';
 import 'package:flutter_cash_waqf/view/pages/boarding_screen.dart';
@@ -31,6 +32,10 @@ final routes = [
   GetPage(
     name: '/register',
     page: () => RegisterScreen(),
+  ),
+  GetPage(
+    name: '/create-password',
+    page: () => CreatePasswordScreen(),
   ),
   GetPage(
     name: '/login',
