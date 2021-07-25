@@ -62,10 +62,10 @@ class WakafBerjangka extends Wakaf {
         namaPemilikRekening: data['nama_pemilik_rekening'],
         statusPengembalian: data['status_pengembalian'],
         aktaIkrarWakaf: (data['nama_file_akta'] != null)
-            ? "$aiwUrlApi/${data['nama_file_akta']}"
+            ? "${Constant.aiwUrlApi}/${data['nama_file_akta']}"
             : null,
         sertifikatWakafUang: (data['nama_file_sertifikat'] != null)
-            ? "$swuUrlApi/${data['nama_file_sertifikat']}"
+            ? "${Constant.swuUrlApi}/${data['nama_file_sertifikat']}"
             : null,
         tanggal: data['tanggal'],
         waktu: data['waktu'],

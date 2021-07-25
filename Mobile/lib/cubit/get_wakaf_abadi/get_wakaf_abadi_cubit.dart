@@ -21,8 +21,10 @@ class GetWakafAbadiSuccessState extends GetWakafAbadiState {
 }
 
 class GetWakafAbadiCubit extends Cubit<GetWakafAbadiState> {
-  final _wakafAbadiService = WakafAbadiService();
-  GetWakafAbadiCubit() : super(GetWakafAbadiInitialState());
+  final WakafAbadiService _wakafAbadiService;
+
+  GetWakafAbadiCubit(this._wakafAbadiService)
+      : super(GetWakafAbadiInitialState());
 
   void resetState() => emit(GetWakafAbadiInitialState());
 

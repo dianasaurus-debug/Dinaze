@@ -91,7 +91,7 @@ class BoardingScreen extends StatelessWidget {
                     Divider(),
                     GreenButton(
                       text: "Registrasi",
-                      onPressedFunction: () => _showKycPopup(),
+                      onPressedFunction: () => Get.toNamed('/register'),
                     ),
                     Divider(),
                     GreenButton(

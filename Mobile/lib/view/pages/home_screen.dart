@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
             decoration: BoxDecoration(
               border: Border.all(
-                color: bwiGreenColor,
+                color: Constant.bwiGreenColor,
                 width: 1.0,
               ),
               borderRadius: BorderRadius.circular(10.0),
@@ -52,12 +52,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   "Cari program wakaf...",
                   style: TextStyle(
                     fontSize: 12,
-                    color: bwiGreenColor,
+                    color: Constant.bwiGreenColor,
                   ),
                 ),
                 Icon(
                   Icons.search_outlined,
-                  color: bwiGreenColor,
+                  color: Constant.bwiGreenColor,
                 ),
               ],
             ),
@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(
-              color: bwiGreenColor,
+              color: Constant.bwiGreenColor,
             ),
             borderRadius: BorderRadius.circular(10.0),
           ),
@@ -147,12 +147,12 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               FaIcon(
                 kategori.nama!.toFontAwesomeIcon(),
-                color: bwiGreenColor,
+                color: Constant.bwiGreenColor,
               ),
               VerticalDivider(),
               Text(
                 kategori.nama!,
-                style: TextStyle(color: bwiGreenColor),
+                style: TextStyle(color: Constant.bwiGreenColor),
               ),
             ],
           ),

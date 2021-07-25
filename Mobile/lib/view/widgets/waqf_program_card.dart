@@ -38,7 +38,7 @@ class NewWaqfProgramCard extends StatelessWidget {
                     if (loadingProgress == null) return child;
                     return Center(
                       child: LinearProgressIndicator(
-                        backgroundColor: bwiGreenColor,
+                        backgroundColor: Constant.bwiGreenColor,
                         value: loadingProgress.expectedTotalBytes != null
                             ? loadingProgress.cumulativeBytesLoaded /
                                 loadingProgress.expectedTotalBytes!
@@ -110,12 +110,12 @@ class WaqfProgramCard extends StatelessWidget {
                   topRight: Radius.circular(_borderRadius),
                 ),
                 child: Image.network(
-                  "$imageUrlApi/${_programWakaf.gambar}",
+                  "${Constant.imageUrlApi}/${_programWakaf.gambar}",
                   loadingBuilder: (context, child, loadingProgress) {
                     if (loadingProgress == null) return child;
                     return Center(
                       child: LinearProgressIndicator(
-                        backgroundColor: bwiGreenColor,
+                        backgroundColor: Constant.bwiGreenColor,
                         value: loadingProgress.expectedTotalBytes != null
                             ? loadingProgress.cumulativeBytesLoaded /
                                 loadingProgress.expectedTotalBytes!

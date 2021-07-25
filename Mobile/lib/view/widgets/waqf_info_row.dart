@@ -22,7 +22,7 @@ class WaqfProgramInfoRow extends StatelessWidget {
             Text(
               _programWakaf.kategori!.nama!,
               style: TextStyle(
-                color: bwiGreenColor,
+                color: Constant.bwiGreenColor,
                 fontWeight: FontWeight.w500,
               ),
             )
@@ -38,7 +38,7 @@ class WaqfProgramInfoRow extends StatelessWidget {
             Text(
               _programWakaf.wakafAbadiTerkumpul!.toRupiahFormat(),
               style: TextStyle(
-                color: bwiGreenColor,
+                color: Constant.bwiGreenColor,
                 fontWeight: FontWeight.w500,
               ),
             )
@@ -54,7 +54,7 @@ class WaqfProgramInfoRow extends StatelessWidget {
             Text(
               _programWakaf.wakafBerjangkaTerkumpul!.toRupiahFormat(),
               style: TextStyle(
-                color: bwiGreenColor,
+                color: Constant.bwiGreenColor,
                 fontWeight: FontWeight.w500,
               ),
             )

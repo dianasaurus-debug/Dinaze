@@ -81,7 +81,7 @@ class WakifListScreen extends StatelessWidget {
       width: Get.width,
       decoration: BoxDecoration(
         border: Border.all(
-          color: bwiGreenColor,
+          color: Constant.bwiGreenColor,
         ),
         borderRadius: BorderRadius.circular(10.0),
       ),
@@ -115,7 +115,7 @@ class WakifListScreen extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: FontWeight.w300,
                     fontSize: 13.0,
-                    color: bwiGreenColor,
+                    color: Constant.bwiGreenColor,
                   ),
                 ),
               ],
@@ -128,7 +128,7 @@ class WakifListScreen extends StatelessWidget {
               style: TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 14.0,
-                color: bwiGreenColor,
+                color: Constant.bwiGreenColor,
               ),
             ),
           ),

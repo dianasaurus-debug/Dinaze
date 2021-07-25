@@ -70,7 +70,7 @@ class ProfileScreen extends StatelessWidget {
           title: Text(
             'Profil',
             style: TextStyle(
-              color: bwiGreenColor,
+              color: Constant.bwiGreenColor,
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -91,10 +91,11 @@ class ProfileScreen extends StatelessWidget {
                       children: [
                         GFAvatar(
                           backgroundImage: (_wakif.foto != null)
-                              ? NetworkImage("$imageUrlApi/${_wakif.foto}")
+                              ? NetworkImage(
+                                  "${Constant.imageUrlApi}/${_wakif.foto}")
                               : null,
                           radius: Get.width * 0.25,
-                          foregroundColor: bwiGreenColor,
+                          foregroundColor: Constant.bwiGreenColor,
                           shape: GFAvatarShape.standard,
                         ),
                         Divider(),
@@ -174,7 +175,7 @@ class ProfileScreen extends StatelessWidget {
       onTap: onTap,
       leading: Icon(
         icon,
-        color: bwiGreenColor,
+        color: Constant.bwiGreenColor,
       ),
       title: Text(
         name,
@@ -199,7 +200,7 @@ class ProfileScreen extends StatelessWidget {
             ListTile(
               leading: FaIcon(
                 FontAwesomeIcons.cameraRetro,
-                color: bwiGreenColor,
+                color: Constant.bwiGreenColor,
               ),
               title: Text("Ambil Gambar dari Kamera"),
               onTap: () async {
@@ -215,7 +216,7 @@ class ProfileScreen extends StatelessWidget {
             ListTile(
               leading: FaIcon(
                 FontAwesomeIcons.solidImages,
-                color: bwiGreenColor,
+                color: Constant.bwiGreenColor,
               ),
               title: Text("Pilih Gambar dari Galeri"),
               onTap: () async {
@@ -236,8 +237,8 @@ class ProfileScreen extends StatelessWidget {
     final _croppedImage = await ImageCropper.cropImage(
       sourcePath: path,
       androidUiSettings: AndroidUiSettings(
-        toolbarTitle: "Potong Foto KTP",
-        toolbarColor: bwiGreenColor,
+        toolbarTitle: "Potong Foto Profil",
+        toolbarColor: Constant.bwiGreenColor,
         toolbarWidgetColor: Colors.white,
         initAspectRatio: CropAspectRatioPreset.original,
         lockAspectRatio: false,

@@ -59,9 +59,10 @@ class LaporanScreen extends StatelessWidget {
 
   TimelineTile _buildTimelineTile(Laporan laporan, bool isLast) => TimelineTile(
         isLast: isLast,
-        beforeLineStyle: LineStyle(color: bwiGreenColor, thickness: 3),
-        afterLineStyle: LineStyle(color: bwiGreenColor, thickness: 3),
-        indicatorStyle: IndicatorStyle(color: bwiGreenColor, width: 15.0),
+        beforeLineStyle: LineStyle(color: Constant.bwiGreenColor, thickness: 3),
+        afterLineStyle: LineStyle(color: Constant.bwiGreenColor, thickness: 3),
+        indicatorStyle:
+            IndicatorStyle(color: Constant.bwiGreenColor, width: 15.0),
         endChild: Container(
           color: Colors.white,
           padding: EdgeInsets.all(5.0),
@@ -79,7 +80,7 @@ class LaporanScreen extends StatelessWidget {
               if (laporan.gambar != null) ...[
                 Divider(),
                 Image.network(
-                  "$imageUrlApi/${laporan.gambar}",
+                  "${Constant.imageUrlApi}/${laporan.gambar}",
                 ),
                 Divider(),
               ],

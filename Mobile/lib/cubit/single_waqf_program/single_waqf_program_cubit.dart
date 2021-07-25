@@ -21,14 +21,16 @@ class SingleWaqfProgramSuccessState extends SingleWaqfProgramState {
 }
 
 class SingleWaqfProgramCubit extends Cubit<SingleWaqfProgramState> {
-  final _waqfProgramService = WaqfProgramService();
-  SingleWaqfProgramCubit() : super(SingleWaqfProgramInitialState());
+  final WaqfProgramService _waqfProgramService;
+
+  SingleWaqfProgramCubit(this._waqfProgramService)
+      : super(SingleWaqfProgramInitialState());
 
   getSingle(int id) async {
     emit(SingleWaqfProgramLoadingState());
     final _response = await _waqfProgramService.getSingle(id);
     if (_response is Exception) {
-      SingleWaqfProgramFailureState(_response.toString());
+      emit(SingleWaqfProgramFailureState(_response.toString()));
     } else {
       final _isError = _response['error'];
       if (_isError) {

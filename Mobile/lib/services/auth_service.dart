@@ -7,7 +7,7 @@ import 'package:flutter_cash_waqf/utilities/constant.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 class AuthService extends BaseService {
-  final _url = "$urlApi/wakif-auth";
+  final _url = "${Constant.urlApi}/wakif-auth";
 
   Future<String?> _getOneSignalId() async {
     final _deviceState = await OneSignal.shared.getDeviceState();

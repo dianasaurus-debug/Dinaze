@@ -23,7 +23,7 @@ class HistoryScreen extends StatelessWidget {
         title: Text(
           'Riwayat Wakaf',
           style: TextStyle(
-            color: bwiGreenColor,
+            color: Constant.bwiGreenColor,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -76,7 +76,7 @@ class HistoryScreen extends StatelessWidget {
         width: Get.width,
         decoration: BoxDecoration(
           border: Border.all(
-            color: bwiGreenColor,
+            color: Constant.bwiGreenColor,
           ),
           borderRadius: BorderRadius.circular(10.0),
         ),
@@ -109,7 +109,7 @@ class HistoryScreen extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.w300,
                       fontSize: 13.0,
-                      color: bwiGreenColor,
+                      color: Constant.bwiGreenColor,
                     ),
                   ),
                 ],
@@ -122,7 +122,7 @@ class HistoryScreen extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 14.0,
-                  color: bwiGreenColor,
+                  color: Constant.bwiGreenColor,
                 ),
               ),
             ),
@@ -142,7 +142,7 @@ class HistoryScreen extends StatelessWidget {
         width: Get.width,
         decoration: BoxDecoration(
           border: Border.all(
-            color: bwiGreenColor,
+            color: Constant.bwiGreenColor,
           ),
           borderRadius: BorderRadius.circular(10.0),
         ),
@@ -175,7 +175,7 @@ class HistoryScreen extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.w300,
                       fontSize: 13.0,
-                      color: bwiGreenColor,
+                      color: Constant.bwiGreenColor,
                     ),
                   ),
                 ],
@@ -188,7 +188,7 @@ class HistoryScreen extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 14.0,
-                  color: bwiGreenColor,
+                  color: Constant.bwiGreenColor,
                 ),
               ),
             ),

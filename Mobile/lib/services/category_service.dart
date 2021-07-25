@@ -4,7 +4,7 @@ import 'package:flutter_cash_waqf/utilities/constant.dart';
 import 'package:http/http.dart' as http;
 
 class CategoryService extends BaseService {
-  final _url = "$urlApi/kategori";
+  final _url = "${Constant.urlApi}/kategori";
 
   Future<dynamic> getAll() async {
     try {

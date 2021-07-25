@@ -23,9 +23,10 @@ class DisplayCategorySuccessState extends DisplayCategoryState {
 }
 
 class DisplayCategoryCubit extends Cubit<DisplayCategoryState> {
-  final CategoryService _categoryService = CategoryService();
+  final CategoryService _categoryService;
 
-  DisplayCategoryCubit() : super(DisplayCategoryInitialState());
+  DisplayCategoryCubit(this._categoryService)
+      : super(DisplayCategoryInitialState());
 
   resetState() => emit(DisplayCategoryInitialState());
 

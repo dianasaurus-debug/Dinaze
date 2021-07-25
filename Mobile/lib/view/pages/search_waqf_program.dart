@@ -15,7 +15,7 @@ class SearchWaqfProgram extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: CloseButton(
-          color: bwiGreenColor,
+          color: Constant.bwiGreenColor,
         ),
         title: TextField(
           autofocus: true,

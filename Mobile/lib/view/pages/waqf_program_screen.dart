@@ -115,7 +115,7 @@ class WaqfProgramScreen extends StatelessWidget {
                               maxLines: 5,
                               expandText: 'selengkapnya',
                               collapseText: 'sembunyikan',
-                              linkColor: bwiGreenColor,
+                              linkColor: Constant.bwiGreenColor,
                             ),
                           ],
                         ),
@@ -139,7 +139,7 @@ class WaqfProgramScreen extends StatelessWidget {
                               contentPadding: EdgeInsets.zero,
                               leading: Icon(
                                 Icons.people,
-                                color: bwiGreenColor,
+                                color: Constant.bwiGreenColor,
                               ),
                               title: Text('Daftar Wakif'),
                               trailing: Icon(Icons.chevron_right),
@@ -150,7 +150,7 @@ class WaqfProgramScreen extends StatelessWidget {
                               contentPadding: EdgeInsets.zero,
                               leading: Icon(
                                 Icons.shopping_cart,
-                                color: bwiGreenColor,
+                                color: Constant.bwiGreenColor,
                               ),
                               title: Text("Laporan Penggunaan Dana"),
                               trailing: Icon(Icons.chevron_right),

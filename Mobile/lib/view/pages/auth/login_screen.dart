@@ -154,7 +154,7 @@ class LoginScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.w400,
-                  color: bwiGreenColor,
+                  color: Constant.bwiGreenColor,
                 ),
               ),
             ),
@@ -166,7 +166,7 @@ class LoginScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.w400,
-                  color: bwiGreenColor,
+                  color: Constant.bwiGreenColor,
                 ),
               ),
             ),

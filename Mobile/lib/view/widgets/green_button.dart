@@ -11,7 +11,7 @@ class GreenButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: bwiGreenColor,
+        primary: Constant.bwiGreenColor,
         padding: EdgeInsets.symmetric(vertical: 10.0),
       ),
       onPressed: onPressedFunction,

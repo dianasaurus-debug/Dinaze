@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_cash_waqf/utilities/constant.dart';
 
 class WaqfProgramService extends BaseService {
-  final _url = "$urlApi/program-wakaf";
+  final _url = "${Constant.urlApi}/program-wakaf";
 
   Future<dynamic> getAll() async {
     try {

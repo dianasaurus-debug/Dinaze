@@ -43,10 +43,10 @@ class WakafAbadi extends Wakaf {
         kodePembayaran: data['kode_pembayaran'],
         statusPembayaran: data['status_pembayaran'],
         aktaIkrarWakaf: (data['nama_file_akta'] != null)
-            ? "$aiwUrlApi/${data['nama_file_akta']}"
+            ? "${Constant.aiwUrlApi}/${data['nama_file_akta']}"
             : null,
         sertifikatWakafUang: (data['nama_file_sertifikat'] != null)
-            ? "$swuUrlApi/${data['nama_file_sertifikat']}"
+            ? "${Constant.swuUrlApi}/${data['nama_file_sertifikat']}"
             : null,
         tanggal: data['tanggal'],
         waktu: data['waktu'],

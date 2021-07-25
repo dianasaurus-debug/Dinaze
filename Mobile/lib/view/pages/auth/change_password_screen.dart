@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cash_waqf/cubit/change_password/change_password_cubit.dart';
@@ -18,40 +19,35 @@ class ChangePasswordScreen extends StatelessWidget {
     return BlocListener<ChangePasswordCubit, ChangePasswordState>(
       listener: (context, state) {
         if (state is ChangePasswordFailureState) {
-          Get.snackbar(
-            "Gagal",
-            state.message,
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.red,
-            colorText: Colors.white,
-            duration: Duration(seconds: 2),
-            icon: Icon(
-              Icons.error,
-              color: Colors.white,
-            ),
-            borderRadius: 0.0,
-            margin: EdgeInsets.zero,
-          );
+          AwesomeDialog(
+            context: context,
+            dialogType: DialogType.ERROR,
+            animType: AnimType.BOTTOMSLIDE,
+            dismissOnBackKeyPress: false,
+            dismissOnTouchOutside: false,
+            buttonsBorderRadius: BorderRadius.circular(5),
+            headerAnimationLoop: false,
+            title: "Gagal",
+            desc: state.message,
+            btnCancelOnPress: () {},
+            btnCancelText: "Oke",
+          ).show();
         }
 
         if (state is ChangePasswordSuccessState) {
-          Get.back();
-          Get.snackbar(
-            "Berhasil",
-            "Kata sandimu berhasil diubah.",
-            backgroundColor: Colors.green,
-            colorText: Colors.white,
-            icon: Icon(
-              Icons.check,
-              color: Colors.white,
-            ),
-            isDismissible: true,
-            duration: Duration(seconds: 2),
-            borderRadius: 10.0,
-            padding: EdgeInsets.all(15.0),
-            snackPosition: SnackPosition.TOP,
-            margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
-          );
+          AwesomeDialog(
+            context: context,
+            dialogType: DialogType.SUCCES,
+            animType: AnimType.BOTTOMSLIDE,
+            dismissOnBackKeyPress: false,
+            dismissOnTouchOutside: false,
+            buttonsBorderRadius: BorderRadius.circular(5),
+            headerAnimationLoop: false,
+            title: "Berhasil",
+            desc: "Kata sandimu berhasil diubah.",
+            btnOkOnPress: () => Get.back(),
+            btnOkText: "Oke",
+          ).show();
         }
       },
       child: Scaffold(

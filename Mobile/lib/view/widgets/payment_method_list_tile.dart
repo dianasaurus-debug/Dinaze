@@ -28,7 +28,7 @@ class PaymentMethodListTile extends StatelessWidget {
               child: Text(
                 "Tampilkan Kode QR",
                 style: TextStyle(
-                  color: bwiGreenColor,
+                  color: Constant.bwiGreenColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),

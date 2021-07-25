@@ -239,7 +239,7 @@ class RegisterScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.w400,
-                  color: bwiGreenColor,
+                  color: Constant.bwiGreenColor,
                 ),
               ),
             ),
@@ -265,7 +265,7 @@ class RegisterScreen extends StatelessWidget {
           ListTile(
             leading: FaIcon(
               FontAwesomeIcons.cameraRetro,
-              color: bwiGreenColor,
+              color: Constant.bwiGreenColor,
             ),
             title: Text("Ambil dari Kamera"),
             onTap: () async {
@@ -281,7 +281,7 @@ class RegisterScreen extends StatelessWidget {
           ListTile(
             leading: FaIcon(
               FontAwesomeIcons.solidImages,
-              color: bwiGreenColor,
+              color: Constant.bwiGreenColor,
             ),
             title: Text("Pilih dari Galeri"),
             onTap: () async {
@@ -304,7 +304,7 @@ class RegisterScreen extends StatelessWidget {
       sourcePath: file.path,
       androidUiSettings: AndroidUiSettings(
         toolbarTitle: "Potong Foto KTP",
-        toolbarColor: bwiGreenColor,
+        toolbarColor: Constant.bwiGreenColor,
         toolbarWidgetColor: Colors.white,
         initAspectRatio: CropAspectRatioPreset.original,
         lockAspectRatio: false,

@@ -342,7 +342,7 @@ class _WaqfFormScreenState extends State<WaqfFormScreen> {
                     onTap: () => _showPaymentMethods(),
                     child: Text(
                       "Lihat Semua",
-                      style: TextStyle(color: bwiGreenColor),
+                      style: TextStyle(color: Constant.bwiGreenColor),
                     ),
                   ),
                 ],

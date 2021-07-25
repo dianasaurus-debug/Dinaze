@@ -14,8 +14,6 @@ class WaqfProgramFailureState extends WaqfProgramState {
   WaqfProgramFailureState(this.message);
 }
 
-class WaqfProgramEmptyState extends WaqfProgramState {}
-
 class WaqfProgramFilledState extends WaqfProgramState {
   final List<ProgramWakaf> listProgramWakaf;
 
@@ -23,8 +21,9 @@ class WaqfProgramFilledState extends WaqfProgramState {
 }
 
 class WaqfProgramCubit extends Cubit<WaqfProgramState> {
-  final WaqfProgramService _waqfProgramSerice = WaqfProgramService();
-  WaqfProgramCubit() : super(WaqfProgramInitialState());
+  final WaqfProgramService _waqfProgramSerice;
+
+  WaqfProgramCubit(this._waqfProgramSerice) : super(WaqfProgramInitialState());
 
   getAll() async {
     emit(WaqfProgramLoadingState());

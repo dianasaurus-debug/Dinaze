@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_cash_waqf/utilities/constant.dart';
 
 class RiwayatWakafService extends BaseService {
-  final _url = "$urlApi/riwayat-wakaf/";
+  final _url = "${Constant.urlApi}/riwayat-wakaf/";
 
   Future<dynamic> getAll() async {
     try {

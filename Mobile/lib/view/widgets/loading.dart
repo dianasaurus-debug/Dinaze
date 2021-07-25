@@ -9,7 +9,7 @@ class Loading extends StatelessWidget {
 
   Loading({
     this.size = 35.0,
-    this.color = bwiGreenColor,
+    this.color = Constant.bwiGreenColor,
     this.width = 4.0,
   });
 

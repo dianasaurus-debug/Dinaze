@@ -4,6 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cash_waqf/cubit/face_detection_cubit.dart';
 import 'package:flutter_cash_waqf/cubit/firebase_auth/firebase_auth_cubit.dart';
 import 'package:flutter_cash_waqf/cubit/ktp_ocr/ktp_ocr_cubit.dart';
+import 'package:flutter_cash_waqf/services/category_service.dart';
+import 'package:flutter_cash_waqf/services/wakaf_abadi_service.dart';
+import 'package:flutter_cash_waqf/services/wakaf_berjangka_service.dart';
+import 'package:flutter_cash_waqf/services/waqf_program_service.dart';
 import 'package:flutter_cash_waqf/utilities/constant.dart';
 import 'package:flutter_cash_waqf/utilities/routes.dart';
 import 'package:get/get.dart';
@@ -41,7 +45,7 @@ import 'package:firebase_core/firebase_core.dart';
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  OneSignal.shared.setAppId(oneSignalAppId);
+  OneSignal.shared.setAppId(Constant.oneSignalAppId);
   await Firebase.initializeApp();
 
   runApp(MyApp());
@@ -79,20 +83,23 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(create: (_) => LogoutCubit()),
         BlocProvider(create: (_) => GetWakifDataCubit()),
         BlocProvider(create: (_) => UpdateWakifDataCubit()),
-        BlocProvider(create: (_) => DisplayCategoryCubit()),
-        BlocProvider(create: (_) => WaqfProgramCubit()),
-        BlocProvider(create: (_) => SingleWaqfProgramCubit()),
+        BlocProvider(create: (_) => DisplayCategoryCubit(CategoryService())),
+        BlocProvider(create: (_) => WaqfProgramCubit(WaqfProgramService())),
+        BlocProvider(
+            create: (_) => SingleWaqfProgramCubit(WaqfProgramService())),
         BlocProvider(create: (_) => WaqfProgramByCategoryCubit()),
         BlocProvider(create: (_) => GetWakifCubit()),
         BlocProvider(create: (_) => PasswordVisibilityCubit()),
         BlocProvider(create: (_) => WaqfTypeCubit()),
         BlocProvider(create: (_) => WaqfOnBehalfOfCubit()),
         BlocProvider(create: (_) => PaymentMethodCubit()),
-        BlocProvider(create: (_) => CreateWakafAbadiCubit()),
-        BlocProvider(create: (_) => CreateWakafBerjangkaCubit()),
+        BlocProvider(create: (_) => CreateWakafAbadiCubit(WakafAbadiService())),
+        BlocProvider(
+            create: (_) => CreateWakafBerjangkaCubit(WakafBerjangkaService())),
         BlocProvider(create: (_) => RiwayatWakafCubit()),
-        BlocProvider(create: (_) => GetWakafAbadiCubit()),
-        BlocProvider(create: (_) => GetWakafBerjangkaCubit()),
+        BlocProvider(create: (_) => GetWakafAbadiCubit(WakafAbadiService())),
+        BlocProvider(
+            create: (_) => GetWakafBerjangkaCubit(WakafBerjangkaService())),
         BlocProvider(create: (_) => ChangePasswordCubit()),
         BlocProvider(create: (_) => SearchWaqfProgramCubit()),
         BlocProvider(create: (_) => RequestResetPasswordCubit()),
@@ -108,9 +115,9 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           textSelectionTheme: TextSelectionThemeData(
-            cursorColor: bwiGreenColor,
+            cursorColor: Constant.bwiGreenColor,
           ),
-          primarySwatch: generateMaterialColor(bwiGreenColor),
+          primarySwatch: generateMaterialColor(Constant.bwiGreenColor),
           fontFamily: 'Poppins',
           dividerTheme: DividerThemeData(
             thickness: 0.0,

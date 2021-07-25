@@ -21,8 +21,10 @@ class CreateWakafBerjangkaSuccessState extends CreateWakafBerjangkaState {
 }
 
 class CreateWakafBerjangkaCubit extends Cubit<CreateWakafBerjangkaState> {
-  final WakafBerjangkaService _wakafBerjangkaService = WakafBerjangkaService();
-  CreateWakafBerjangkaCubit() : super(CreateWakafBerjangkaInitialState());
+  final WakafBerjangkaService _wakafBerjangkaService;
+
+  CreateWakafBerjangkaCubit(this._wakafBerjangkaService)
+      : super(CreateWakafBerjangkaInitialState());
 
   void resetState() => emit(CreateWakafBerjangkaInitialState());
 

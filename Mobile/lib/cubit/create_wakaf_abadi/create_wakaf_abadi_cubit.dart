@@ -3,8 +3,10 @@ import 'package:flutter_cash_waqf/model/wakaf_abadi.dart';
 import 'package:flutter_cash_waqf/services/wakaf_abadi_service.dart';
 
 class CreateWakafAbadiCubit extends Cubit<CreateWakafAbadiState> {
-  final WakafAbadiService _wakafAbadiService = WakafAbadiService();
-  CreateWakafAbadiCubit() : super(CreateWakafAbadiInitialState());
+  final WakafAbadiService _wakafAbadiService;
+
+  CreateWakafAbadiCubit(this._wakafAbadiService)
+      : super(CreateWakafAbadiInitialState());
 
   void resetState() => emit(CreateWakafAbadiInitialState());
 

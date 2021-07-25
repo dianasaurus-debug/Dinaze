@@ -8,14 +8,22 @@ import 'package:mocktail/mocktail.dart';
 class MockAuthService extends Mock implements AuthService {}
 
 void main() {
-  TestWidgetsFlutterBinding.ensureInitialized();
+  late final MockAuthService mockAuthService;
+
+  setUpAll(() {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    mockAuthService = MockAuthService();
+  });
+
+  setUp(() {
+    reset(mockAuthService);
+  });
 
   group("Registration Test", () {
-    blocTest(
-      "Success Register",
+    blocTest<RegisterCubit, RegisterState>(
+      "Success",
       build: () {
-        final MockAuthService mockService = MockAuthService();
-        when(() => mockService.register(any(), any(), any()))
+        when(() => mockAuthService.register(any(), any(), any()))
             .thenAnswer((_) async => Future.value({
                   "error": false,
                   "message": "Berhasil registrasi wakif.",
@@ -28,23 +36,52 @@ void main() {
                     "created_at": "2021-03-19T01:01:21.357Z",
                   },
                 }));
-        return RegisterCubit(mockService);
+        return RegisterCubit(mockAuthService);
       },
-      act: (bloc) async => await (bloc as RegisterCubit)
-          .tryRegister("name", "email", "password"),
+      act: (bloc) async => await bloc.tryRegister("name", "email", "password"),
       expect: () => [
         isA<RegisterLoadingState>(),
         isA<RegisterSuccessState>(),
       ],
     );
+
+    blocTest<RegisterCubit, RegisterState>(
+      "Failure",
+      build: () {
+        when(() => mockAuthService.register(any(), any(), any())).thenAnswer(
+            (_) async => Future.value({
+                  "error": true,
+                  "message": "Alamat email sudah pernah digunakan"
+                }));
+        return RegisterCubit(mockAuthService);
+      },
+      act: (bloc) async => await bloc.tryRegister("name", "email", "password"),
+      expect: () => [
+        isA<RegisterLoadingState>(),
+        isA<RegisterFailureState>(),
+      ],
+    );
+
+    blocTest<RegisterCubit, RegisterState>(
+      "Exception",
+      build: () {
+        when(() => mockAuthService.register(any(), any(), any()))
+            .thenAnswer((_) async => Exception());
+        return RegisterCubit(mockAuthService);
+      },
+      act: (bloc) async => await bloc.tryRegister("name", "email", "password"),
+      expect: () => [
+        isA<RegisterLoadingState>(),
+        isA<RegisterFailureState>(),
+      ],
+    );
   });
 
   group("Login Test", () {
-    blocTest(
-      "Success Login",
+    blocTest<LoginCubit, LoginState>(
+      "Success",
       build: () {
-        final MockAuthService mockService = MockAuthService();
-        when(() => mockService.login(any(), any()))
+        when(() => mockAuthService.login(any(), any()))
             .thenAnswer((_) async => Future.value({
                   "error": false,
                   "message": "Berhasil masuk akun wakif",
@@ -62,46 +99,43 @@ void main() {
                   },
                   "accessToken": "accessToken"
                 }));
-        return LoginCubit(mockService);
+        return LoginCubit(mockAuthService);
       },
-      act: (bloc) async =>
-          await (bloc as LoginCubit).login("email", "password"),
+      act: (bloc) async => await bloc.login("email", "password"),
       expect: () => [
         isA<LoginLoadingState>(),
         isA<LoginSuccessState>(),
       ],
     );
 
-    blocTest(
-      "Failure Login",
+    blocTest<LoginCubit, LoginState>(
+      "Failure",
       build: () {
-        final MockAuthService mockService = MockAuthService();
-        when(() => mockService.login(any(), any()))
+        when(() => mockAuthService.login(any(), any()))
             .thenAnswer((_) async => Future.value({
                   "error": true,
                   "message": "Akun wakif tidak ditemukan.",
                 }));
-        return LoginCubit(mockService);
+        return LoginCubit(mockAuthService);
       },
-      act: (bloc) async =>
-          await (bloc as LoginCubit).login("email", "password"),
+      act: (bloc) async => await bloc.login("email", "password"),
       expect: () => [
         isA<LoginLoadingState>(),
         isA<LoginFailureState>(),
       ],
     );
 
-    blocTest(
-      "Exception Login",
+    blocTest<LoginCubit, LoginState>(
+      "Exception",
       build: () {
-        final MockAuthService mockService = MockAuthService();
-        when(() => mockService.login(any(), any())).thenThrow(Exception());
-        return LoginCubit(mockService);
+        when(() => mockAuthService.login(any(), any()))
+            .thenAnswer((_) async => Exception());
+        return LoginCubit(mockAuthService);
       },
-      act: (bloc) async =>
-          await (bloc as LoginCubit).login("email", "password"),
-      errors: () => [
-        isA<Exception>(),
+      act: (bloc) async => await bloc.login("email", "password"),
+      expect: () => [
+        isA<LoginLoadingState>(),
+        isA<LoginFailureState>(),
       ],
     );
   });

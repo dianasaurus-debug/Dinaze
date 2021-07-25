@@ -75,8 +75,8 @@ class VerifyTokenScreen extends StatelessWidget {
               pinTheme: PinTheme(
                 shape: PinCodeFieldShape.underline,
                 inactiveColor: Colors.black,
-                selectedColor: bwiGreenColor,
-                activeColor: bwiGreenColor,
+                selectedColor: Constant.bwiGreenColor,
+                activeColor: Constant.bwiGreenColor,
               ),
               onChanged: (_) {},
               onSubmitted: (_) => _onPressedAction(context),
